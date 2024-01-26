@@ -69,7 +69,9 @@ const Pagination = ({
   const pageNumbers = getPageNumbers({ currentPage, pageSize, total })
 
   const path = router.pathname
-
+  const {locale, defaultLocale} = router
+  const isMain = locale === defaultLocale
+  
   const url = (page: number | string) =>
     `?${queryString.stringify({
       ...query,
@@ -81,10 +83,10 @@ const Pagination = ({
       <Head>
         {/* SEO pagination helpers */}
         {currentPage !== 1 ? (
-          <link rel='prev' href={`${path}${url(currentPage - 1)}`} />
+          <link rel='prev' href={`${isMain ? "" : "/" + locale}${path}${url(currentPage - 1)}`} />
         ) : null}
         {!isLastPage ? (
-          <link rel='next' href={`${path}${url(currentPage + 1)}`} />
+          <link rel='next' href={`${isMain ? "" : "/" + locale}${path}${url(currentPage + 1)}`} />
         ) : null}
       </Head>
       <List theme={styles}>
