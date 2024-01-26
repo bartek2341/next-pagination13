@@ -69,7 +69,7 @@ const Pagination = ({
   const pageNumbers = getPageNumbers({ currentPage, pageSize, total })
 
   const path = router.pathname
-  const {locale, defaultLocale} = router
+  const { locale, defaultLocale } = router
   const isMain = locale === defaultLocale
   
   const url = (page: number | string) =>
